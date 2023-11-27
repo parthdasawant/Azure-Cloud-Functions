@@ -1,0 +1,57 @@
+<!-- Coursera Guided Project -->
+<!-- Created by: Rogerio Guimaraes -->
+<html>
+    <head>
+        <link rel="stylesheet" href="./style.css" type="text/css">
+    </head>
+    <body>
+        <!-- Vaccination Register HTML Form -->
+        <div class="container">
+            <div class="brand-logo"></div>
+            <div class="brand-title">Registration</div>
+            <div class="inputs">
+              <label>E-Mail</label>
+              <input type="email" placeholder="example@test.com" id="email"/>
+              <label>Name</label>
+              <input type="text" placeholder="name here" id="name"/>
+              <label for="vendors">Vendor:</label>
+              <select id="vendors" name="vendors">
+                  <option value="astrazeneca">Astra-Zeneca</option> 
+                  <option value="sinovac">Sinovac</option>
+                  <option value="pfizer">PFizer</option>
+                  <option value="biontec">Biontec</option>
+              </select>
+              <button type="submit" onclick="writePerson()">Save</button>
+              <br>
+              <label id="message"/>
+            </div>
+        </div>
+        <!-- Script code to call the Azure Function Microservice -->
+        <script>
+            function writePerson() {
+                var email = document.getElementById("email").value
+                var name  = document.getElementById("name").value
+                var vendors = document.getElementById("vendors")
+                var vendor = vendors.options[vendors.selectedIndex].text
+                axios({
+                    method: "post",
+                    url: "https://courserafunctionapp07.azurewebsites.net/api/function-registration?code=4HSRAj3AZ8taZHqSWp3-4IxHM1mqBsvpagU2lEZu9UIVAzFueFVerg==",
+                    data: {
+                        "PartitionKey":"vaccine",
+                        "RowKey":email,
+                        "Name":name,
+                        "Vendor":vendor
+                    }
+                })
+                 .then(response=> {
+                     document.getElementById("message").innerHTML = "Saved Successful" 
+                 })
+                 .catch(error => {
+                    document.getElementById("message").innerHTML = "It was not possible to save!"
+                 })
+            }
+        </script>
+        <!-- Axios Lib-->
+        <script src="axios.min.js" type="text/javascript"></script>
+    </body>
+</html>

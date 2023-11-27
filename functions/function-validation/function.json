@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "tableName": "vaccination",
+      "connection": "TableConnection",
+      "name": "tableVaccination",
+      "type": "table",
+      "direction": "in",
+      "filter":"(RowKey eq '{email}')"
+    }
+  ]
+}
