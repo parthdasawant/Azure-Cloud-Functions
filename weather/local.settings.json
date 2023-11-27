@@ -1,0 +1,8 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "TableConnection":"DefaultEndpointsProtocol=https;AccountName=courserargaacf;AccountKey=WtsaLRm1SOZfjAf8Qp0wThYuJU1d7hw/WlegGJsxAloOSspcArJ9sTv+65ZXbql9HZlKAANNxSFL+AStZwKGww==;EndpointSuffix=core.windows.net"
+  }
+}
